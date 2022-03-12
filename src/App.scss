@@ -1,0 +1,64 @@
+@mixin flex-flow($direction) {
+	display: flex;
+	flex-flow: $direction wrap;
+}
+
+.title {
+	&__winner {
+		animation: blinker 2s linear infinite;
+		left: 10px;
+		text-transform: uppercase;
+		position: absolute;
+		top: 40px;
+		z-index: 1;
+	}
+}
+
+@keyframes blinker {
+	50% {
+		opacity: 0;
+	}
+}
+
+.container {
+	position: relative;
+	@include flex-flow(column);
+
+	&--disabled {
+		pointer-events: none;
+	}
+
+	&--locked {
+		cursor: not-allowed;
+	}
+
+	&--overlay {
+		opacity: 0.2;
+	}
+}
+
+.row {
+	margin: 2.5px;
+	margin-left: 0;
+	@include flex-flow(row);
+
+	&:first-child {
+		margin-top: 0;
+	}
+}
+
+.square {
+	background-color: none;
+	border: 2px solid black;
+	border-radius: 10px;
+	margin: 5px;
+	padding: 20px;
+
+	&--empty {
+		padding: 12px 15.5px;
+	}
+
+	&:nth-last-of-type(7n) {
+		margin-bottom: 0;
+	}
+}
